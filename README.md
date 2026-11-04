@@ -129,6 +129,7 @@ node tests/test_leak.mjs   http://localhost:8861/                    # 隐藏信
 node tests/test_game.mjs   http://localhost:8861/ ./shots            # 7 部手机完整一局 + 5 次否决 + 撤销
 node tests/test_review.mjs http://localhost:8861/ ./shots            # 评价卡（拦截总入口接口，不写线上数据）
 node tests/test_chat.mjs   http://localhost:8861/ ./shots            # 规则助手：备用模型切换、定时检查、不带房间信息
+node tests/test_nav.mjs    http://localhost:8861/ ./shots            # 左上角返回按钮：全部游戏 / 首页 / 返回
 node tests/test_chat.mjs   https://你的域名/ ./shots --live           # 线上实问
 ```
 

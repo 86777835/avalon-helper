@@ -88,7 +88,7 @@ await pickTeam(P[2], good.slice(0, 2));
 await voteAll(P[5], [evil[0]]);
 await pageOf(good[0]).waitForSelector('.qc');
 yes('team member: card buttons on own phone', await pageOf(good[0]).isVisible('.qc.f'));
-yes('non-member: waiting', await pageOf(evil[1]).isVisible('text=等待队员出牌'));
+yes('non-member: waiting', await pageOf(evil[1]).waitForSelector('text=等待队员出牌').catch(() => null));
 await pageOf(good[0]).click('.qc.f');
 await pageOf(good[0]).waitForSelector('.toast:has-text("好人只能出成功")');
 console.log('PASS good player tapping 失败 is stopped on the phone');

@@ -133,8 +133,8 @@ function view() {
   if (!S) return `${hero()}<div class="wrap"><h2 class="h">正在连接房间 ${code}…</h2></div>`;
   return bar() + `<div class="wrap" data-k="stage-${S.stage === 'setup' ? 'setup' : 'play'}">` + (S.stage === 'setup' ? setupView() : playView()) + '</div>';
 }
-const hero = () => `<div class="hero" data-k="hero"><div class="en">AVALON</div><h1>阿瓦隆面杀助手</h1><div class="orn"></div></div><div class="band"></div>`;
-const bar = () => `<div class="bar" data-k="bar"><span class="ttl">阿瓦隆</span>
+const hero = () => `<div class="hero" data-k="hero"><button class="navb" data-act="leave">‹ 首页</button><div class="en">AVALON</div><h1>阿瓦隆面杀助手</h1><div class="orn"></div></div><div class="band"></div>`;
+const bar = () => `<div class="bar" data-k="bar"><button class="navb" data-act="leave">‹ 首页</button><span class="ttl">阿瓦隆</span>
   ${seated() ? `<span class="mine">${esc(nm(myId()))}</span>` : ''}
   <button class="room" data-act="share"><small>房间</small>${code}<small>邀请</small></button><span class="conn ${online ? 'on' : ''}" title="${online ? '已连接' : '重新连接中'}"></span></div>`;
 
@@ -153,7 +153,7 @@ function landing() {
       <button class="card lobby" data-act="rejoin" data-code="${c}" data-k="lb-${c}">
         <span class="lc">${c}${tag(c)}</span><span class="lp"></span><span class="ls"><small>点击进入</small></span>
       </button>`).join('') : '<div class="empty">暂无进行中的房间</div>';
-  return `<div class="hero-cover" data-k="hero"><img class="bg" src="img/cover.jpg" alt=""><img class="box" src="img/cover.jpg" alt="《阿瓦隆》游戏盒封面">
+  return `<div class="hero-cover" data-k="hero"><a class="navb" href="https://boardgame.leisurecat.cloud">‹ 全部游戏</a><img class="bg" src="img/cover.jpg" alt=""><img class="box" src="img/cover.jpg" alt="《阿瓦隆》游戏盒封面">
       <div class="ht"><div class="hz">阿瓦隆面杀助手</div><div class="hs">手机看身份 · 票型不再忘</div></div></div>
     <div class="wrap" data-k="landing">
     <div class="card start">

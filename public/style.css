@@ -375,7 +375,7 @@ body.has-chat{padding-bottom:72px}
 .por.lg{width:72px;height:72px;padding:3px}
 .pad{padding:10px 12px 12px}
 .ib.x{color:var(--evil)}
-.hero-cover{position:relative;overflow:hidden;padding:calc(env(safe-area-inset-top) + 18px) 16px 18px;text-align:center;background:var(--steel);border-bottom:3px solid var(--brass)}
+.hero-cover{position:relative;overflow:hidden;padding:calc(env(safe-area-inset-top) + 56px) 16px 18px;text-align:center;background:var(--steel);border-bottom:3px solid var(--brass)}
 .hero-cover .bg{position:absolute;inset:-20px;width:calc(100% + 40px);height:calc(100% + 40px);object-fit:cover;filter:blur(18px) brightness(.45) saturate(1.2)}
 .hero-cover .box{position:relative;display:block;height:230px;margin:0 auto;border-radius:4px;box-shadow:0 10px 28px rgba(0,0,0,.6),0 0 0 1px rgba(255,255,255,.15)}
 .hero-cover .ht{position:relative;margin-top:14px;color:#fbf6ec;text-shadow:0 2px 10px rgba(0,0,0,.6)}
@@ -524,3 +524,13 @@ em.g,.g{color:var(--good)}em.e,.e{color:var(--evil)}
 .game .gp .wn i{font-weight:700;color:var(--ink)}
 .game .gd .row{gap:8px;padding:5px 11px}
 .gq{padding:6px 11px 4px;font-size:12.5px;line-height:1.8;color:var(--ink2)}
+
+/* back buttons (series-wide): "‹ 全部游戏" on the landing, "‹ 首页" in a room, "‹ 返回" on other pages */
+.navb{flex:none;display:inline-flex;align-items:center;height:36px;padding:0 12px;border-radius:18px;border:1px solid rgba(230,204,133,.55);
+  background:rgba(15,23,44,.55);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);color:var(--brass2);font:700 13px var(--sans);
+  letter-spacing:1px;text-decoration:none;white-space:nowrap;box-shadow:0 2px 6px rgba(0,0,0,.25)}
+.navb:active{transform:translateY(1px)}
+.hero-cover .navb,.hero-art .navb,.hero .navb{position:absolute;z-index:3;top:calc(env(safe-area-inset-top) + 10px);left:max(12px,env(safe-area-inset-left))}
+.hero{position:relative;padding-top:calc(env(safe-area-inset-top) + 52px)}
+.bar .navb{height:36px;padding:0 10px;margin-left:-2px;background:rgba(255,255,255,.08)}
+.bar .ttl{min-width:0}
