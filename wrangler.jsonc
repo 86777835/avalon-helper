@@ -9,11 +9,12 @@
   "rules": [{ "type": "Text", "globs": ["**/*.md"], "fallthrough": true }],
   "ratelimits": [{ "name": "CHAT_LIMIT", "namespace_id": "1071", "simple": { "limit": 8, "period": 60 } }],
   "ai": { "binding": "AI" },
-  "kv_namespaces": [{ "binding": "CHAT_STATE", "id": "TODO-create-before-deploy" }],
+  "kv_namespaces": [{ "binding": "CHAT_STATE", "id": "0528b0e1982a4d60a3e89a818f6aef77" }],
   "triggers": { "crons": ["0 * * * *"] },
   "durable_objects": {
     "bindings": [{ "name": "ROOM", "class_name": "Room" }, { "name": "LOBBY", "class_name": "Lobby" }, { "name": "ARCHIVE", "class_name": "Archive" }]
   },
   "migrations": [{ "tag": "v1", "new_sqlite_classes": ["Room", "Lobby", "Archive"] }],
-  "observability": { "enabled": true }
+  "observability": { "enabled": true },
+  "routes": [{ "pattern": "avalon.leisurecat.cloud", "custom_domain": true }]
 }
