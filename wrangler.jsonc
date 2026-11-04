@@ -1,0 +1,19 @@
+{
+  "name": "avalon-helper",
+  "main": "src/worker.js",
+  "compatibility_date": "2026-05-28",
+  "assets": {
+    "directory": "./public",
+    "run_worker_first": ["/api/*"]
+  },
+  "rules": [{ "type": "Text", "globs": ["**/*.md"], "fallthrough": true }],
+  "ratelimits": [{ "name": "CHAT_LIMIT", "namespace_id": "1071", "simple": { "limit": 8, "period": 60 } }],
+  "ai": { "binding": "AI" },
+  "kv_namespaces": [{ "binding": "CHAT_STATE", "id": "TODO-create-before-deploy" }],
+  "triggers": { "crons": ["0 * * * *"] },
+  "durable_objects": {
+    "bindings": [{ "name": "ROOM", "class_name": "Room" }, { "name": "LOBBY", "class_name": "Lobby" }, { "name": "ARCHIVE", "class_name": "Archive" }]
+  },
+  "migrations": [{ "tag": "v1", "new_sqlite_classes": ["Room", "Lobby", "Archive"] }],
+  "observability": { "enabled": true }
+}
