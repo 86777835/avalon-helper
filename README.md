@@ -141,6 +141,8 @@ python3 tools/build_guide.py tools/讲解稿.md public/guide.html tools/faq.json
 
 ## 部署
 
+图片缓存 7 天，部署时若替换同名图片，用户最多需要等待 7 天才能看到新图。
+
 ```bash
 wrangler kv namespace create avalon-chat-state   # 把 id 填进 wrangler.jsonc
 wrangler deploy
