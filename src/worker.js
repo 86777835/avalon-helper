@@ -93,6 +93,7 @@ async function chat(req, env) {
   const valid = Array.isArray(msgs) && msgs.length > 0 && msgs.length <= 20 && msgs.at(-1).role === 'user' && msgs.at(-1).content?.length <= 500
     && msgs.every(m => ['user', 'assistant'].includes(m?.role) && typeof m.content === 'string' && m.content.trim() && m.content.length <= 3000);
   if (!valid) return Response.json({ error: '问题格式不对，请刷新页面再试' }, { status: 400 });
+  console.log('chat question', JSON.stringify(msgs.at(-1).content));   // what players ask, for the usage brief
   const messages = [{ role: 'system', content: CHAT_SYSTEM }, ...msgs.slice(-10).map(m => ({ role: m.role, content: m.content }))];
   const fails = [];   // HTTP status, 0 = unreachable or error, 'queue' = no answer started in time or stalled
   const order = await env.CHAT_STATE.get(DEEPSEEK_DOWN) ? ORDER.deepseekDown : ORDER.normal;
