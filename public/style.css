@@ -534,3 +534,5 @@ em.g,.g{color:var(--good)}em.e,.e{color:var(--evil)}
 .hero{position:relative;padding-top:calc(env(safe-area-inset-top) + 52px)}
 .bar .navb{height:36px;padding:0 10px;margin-left:-2px;background:rgba(255,255,255,.08)}
 .bar .ttl{min-width:0}
+/* 写评价: opens this game's review form on the hub, then 返回 comes back here */
+.hero-cover .rate-nav{left:auto;right:max(12px,env(safe-area-inset-right))}

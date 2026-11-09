@@ -153,7 +153,7 @@ function landing() {
       <button class="card lobby" data-act="rejoin" data-code="${c}" data-k="lb-${c}">
         <span class="lc">${c}${tag(c)}</span><span class="lp"></span><span class="ls"><small>点击进入</small></span>
       </button>`).join('') : '<div class="empty">暂无进行中的房间</div>';
-  return `<div class="hero-cover" data-k="hero"><a class="navb" href="https://boardgame.leisurecat.cloud">‹ 全部游戏</a><img class="bg" src="img/cover.jpg" alt=""><img class="box" src="img/cover.jpg" alt="《阿瓦隆》游戏盒封面">
+  return `<div class="hero-cover" data-k="hero"><a class="navb" href="https://boardgame.leisurecat.cloud">‹ 全部游戏</a><a class="navb rate-nav" href="https://boardgame.leisurecat.cloud/?rate=avalon&back=${encodeURIComponent(location.href)}">★ 写评价</a><img class="bg" src="img/cover.jpg" alt=""><img class="box" src="img/cover.jpg" alt="《阿瓦隆》游戏盒封面">
       <div class="ht"><div class="hz">阿瓦隆面杀助手</div><div class="hs">手机看身份 · 票型不再忘</div></div></div>
     <div class="wrap" data-k="landing">
     <div class="card start">
