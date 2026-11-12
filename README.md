@@ -86,6 +86,14 @@
   - **定时检查（线上暂未启用）**：代码里有每小时检查 DeepSeek 的逻辑，不通时下一小时先用 Qwen。但 Cloudflare 免费版每个账号最多只能有 5 个定时任务，已被其他助手站占满，所以线上没有注册这个定时任务。目前 DeepSeek 不通时，每次提问要先等 9 秒才换 Qwen。要启用，在 `wrangler.jsonc` 里加上 `"triggers": { "crons": ["0 * * * *"] }` 后重新部署即可。
   - **页面显示**：回答下方不显示是哪个模型答的。
   - **不会泄露身份**：请求只带对话内容，不带任何房间信息，所以助手不可能知道、也不会透露任何人的身份。
+  - **联网查找（2026-11-12 起，照匹兹堡试点移植）**：
+    - **触发**：讲解稿和常见问题里没有答案时，模型只回一行「【需联网】+英文搜索词」（以 The Resistance Avalon 开头）。服务器转去调 DeepSeek 的搜索接口（`/v1/tools/search`），先只搜 BGG，不足 3 条再搜全网；再让模型只依据搜到的摘要作答，用 [1] [2] 标出处。
+    - **页面显示**：这类回答上方固定显示「本站资料没有这一条，以下来自网上讨论，本站未核对」，下面列来源链接。搜不到或搜索失败就明说，不编。
+    - **扩展内容**：网上的说法如果来自兰斯洛特、王者之剑等扩展，或来自《抵抗组织》，回答里会指出来。
+    - **不联网的问题**：问某人身份、问扩展、问无关话题时不联网。
+    - **不带对局信息**：搜索请求和第一轮一样，只带问题本身，不带任何房间或身份信息。
+    - **日志**：每次联网在日志里记一条 `chat web search`，用来核对后补进常见问题。
+    - **耗时**：线上实测，本站资料能答的约 1.5 秒；需要联网的约 3–5 秒。
 
 <p><img src="docs/screenshots/guide.jpg" width="260" alt="新手教程"> <img src="docs/screenshots/chat.jpg" width="260" alt="规则助手"></p>
 
@@ -110,7 +118,7 @@
 | 部分 | 说明 |
 |---|---|
 | `public/logic.js` | 规则表、身份视野、`reduce()` 权威判定、`publicView()` / `seatView()` 视图过滤 |
-| `src/worker.js` | 建房接口；`Room`（每个房间一个 Durable Object，按连接身份分发视图）；`Lobby`（首页房间列表，只含玩家名和进度）；`Archive`（往期对局）；`/api/chat` 规则助手（备用模型切换、按 IP 限流；每小时检查 DeepSeek 的定时任务线上暂未启用，见上文） |
+| `src/worker.js` | 建房接口；`Room`（每个房间一个 Durable Object，按连接身份分发视图）；`Lobby`（首页房间列表，只含玩家名和进度）；`Archive`（往期对局）；`/api/chat` 规则助手（备用模型切换、联网查找、按 IP 限流；每小时检查 DeepSeek 的定时任务线上暂未启用，见上文） |
 | `public/app.js`、`chat.js`、`style.css` | 页面；视觉沿用「桌游小助手」系列的组件，配色改为深蓝、银、红、金 |
 | `tools/` | 讲解稿、常见问题、教程页生成脚本 |
 | `tests/` | 规则单元测试、隐藏信息泄露测试、多手机端到端测试、评价卡测试、规则助手测试 |
@@ -129,6 +137,7 @@ node tests/test_leak.mjs   http://localhost:8861/                    # 隐藏信
 node tests/test_game.mjs   http://localhost:8861/ ./shots            # 7 部手机完整一局 + 5 次否决 + 撤销
 node tests/test_review.mjs http://localhost:8861/ ./shots            # 评价卡（拦截总入口接口，不写线上数据）
 node tests/test_chat.mjs   http://localhost:8861/ ./shots            # 规则助手：备用模型切换、定时检查、不带房间信息
+node tests/test_chat.mjs   http://localhost:8861/ ./shots --mock-web # 联网查找（同上的 wrangler dev 参数；和上一条隔 1 分钟跑，避开每分钟 8 问的限流）
 node tests/test_nav.mjs    http://localhost:8861/ ./shots            # 左上角返回按钮：全部游戏 / 首页 / 返回
 node tests/test_chat.mjs   https://你的域名/ ./shots --live           # 线上实问
 ```

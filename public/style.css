@@ -536,3 +536,11 @@ em.g,.g{color:var(--good)}em.e,.e{color:var(--evil)}
 .bar .ttl{min-width:0}
 /* 写评价: opens this game's review form on the hub, then 返回 comes back here */
 .hero-cover .rate-nav{left:auto;right:max(12px,env(safe-area-inset-right))}
+
+/* answers from a web search: a label on top, sources underneath (same as the Pittsburgh pilot) */
+.cweb{margin:-2px 0 6px;padding:5px 8px;border-radius:7px;background:#efe9da;font:500 12px/1.5 var(--sans);color:var(--ink2)}
+.cweb b{color:var(--red)}
+.csrc{margin-top:8px;padding-top:6px;border-top:1px dashed rgba(76,82,102,.25);font:12px/1.5 var(--sans);color:var(--ink2)}
+.csrc a{display:block;color:var(--navy);text-decoration:none;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.csrc i{margin-left:6px;font-style:normal;color:var(--ink2);opacity:.7}
+.cwait{display:block;margin-bottom:4px;font:500 12.5px var(--sans);color:var(--ink2)}
