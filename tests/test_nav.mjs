@@ -18,7 +18,7 @@ const errs = []; page.on('pageerror', e => errs.push(e.message));
 
 // the back button's box, and every other clickable element it overlaps
 const layout = () => page.evaluate(() => {
-  const nav = document.querySelector('.navb'), r = nav.getBoundingClientRect();
+  const nav = document.querySelector('.navb:not(.rate-nav)'), r = nav.getBoundingClientRect();
   const hits = [...document.querySelectorAll('a, button, input, textarea, select, [data-act], [data-hold]')]
     .filter(el => el !== nav && !nav.contains(el) && el.offsetParent !== null)
     .filter(el => { const q = el.getBoundingClientRect(); return q.width && q.height && q.left < r.right && q.right > r.left && q.top < r.bottom && q.bottom > r.top; })
@@ -37,7 +37,7 @@ const checkLayout = async (where, text) => {
 
 // landing
 await page.goto(base); await page.waitForSelector('.hero-cover .navb');
-eq('landing: link to all games', await page.getAttribute('.navb', 'href'), 'https://boardgame.leisurecat.cloud');
+eq('landing: link to all games', await page.getAttribute('.navb:not(.rate-nav)', 'href'), 'https://boardgame.leisurecat.cloud');
 await checkLayout('landing', '‹ 全部游戏');
 await page.screenshot({ path: `${out}/nav-landing.png` });
 
@@ -81,16 +81,16 @@ await page.click('.bar .navb'); await page.waitForSelector('.hero-cover');
 
 // a room code that doesn't exist: back still works
 await page.goto(api('/?r=ZZZZ')); await page.waitForSelector('text=不存在');
-eq('missing room: "‹ 首页" shown', await page.textContent('.navb'), '‹ 首页');
-await page.click('.navb'); await page.waitForSelector('.hero-cover');
+eq('missing room: "‹ 首页" shown', await page.textContent('.navb:not(.rate-nav)'), '‹ 首页');
+await page.click('.navb:not(.rate-nav)'); await page.waitForSelector('.hero-cover');
 
 // separate pages
 for (const p of ['guide', 'history']) {
-  await page.goto(api(p)); await page.waitForSelector('.navb');
-  eq(`${p}: back to the site's home`, await page.getAttribute('.navb', 'href'), '/');
+  await page.goto(api(p)); await page.waitForSelector('.navb:not(.rate-nav)');
+  eq(`${p}: back to the site's home`, await page.getAttribute('.navb:not(.rate-nav)', 'href'), '/');
   await checkLayout(p, '‹ 返回');
   await page.screenshot({ path: `${out}/nav-${p}.png` });
-  await page.click('.navb'); await page.waitForSelector('.hero-cover');
+  await page.click('.navb:not(.rate-nav)'); await page.waitForSelector('.hero-cover');
 }
 
 eq('no page errors', errs, []);
