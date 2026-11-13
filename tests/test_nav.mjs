@@ -1,7 +1,7 @@
 // Back buttons (top left). Usage: node tests/test_nav.mjs <base-url> <shots-dir>   (local `wrangler dev`)
 // - landing: "‹ 全部游戏" → the hub
 // - in a room (setup, in game, results): "‹ 首页" → back to the landing; the room is still there and can be entered again
-// - guide / history: "‹ 返回" → /
+// - guide / history / teach: "‹ 返回" → /
 // - at 390 px: the button is visible, at least 36 px tall, overlaps no other clickable element, and nothing scrolls sideways
 import { chromium } from 'playwright-core';
 import { mkdirSync } from 'node:fs';
@@ -85,7 +85,7 @@ eq('missing room: "‹ 首页" shown', await page.textContent('.navb:not(.rate-n
 await page.click('.navb:not(.rate-nav)'); await page.waitForSelector('.hero-cover');
 
 // separate pages
-for (const p of ['guide', 'history']) {
+for (const p of ['guide', 'history', 'teach']) {
   await page.goto(api(p)); await page.waitForSelector('.navb:not(.rate-nav)');
   eq(`${p}: back to the site's home`, await page.getAttribute('.navb:not(.rate-nav)', 'href'), '/');
   await checkLayout(p, '‹ 返回');

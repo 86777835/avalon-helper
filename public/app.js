@@ -162,6 +162,7 @@ function landing() {
       <div class="join"><input id="joinCode" maxlength="4" autocomplete="off" autocapitalize="characters" placeholder="房间码"><button class="btn navy" data-act="join">加入</button></div>
       ${ui.err ? `<div class="err">${esc(ui.err)}</div>` : ''}
     </div>
+    <a class="card teachgo" href="teach"><span class="tg-i">讲</span><span><b>第一次玩？3 分钟讲规则</b>照着念就能开局，不懂的词点一下</span><i>›</i></a>
     <div class="feat">
       <div><b>免闭眼</b>每人手机看自己的身份和该看到的人</div>
       <div><b>记票型</b>每次组队、投票、任务结果一目了然</div>

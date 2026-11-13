@@ -77,6 +77,18 @@
 
 <p><img src="docs/screenshots/results.jpg" width="260" alt="结算"></p>
 
+### 3 分钟讲规则（`/teach`）
+
+首页“创建新房间”下面的「第一次玩？3 分钟讲规则」，给带新人开局的人照着念（2026-11-13 起，照匹兹堡移植）：
+
+- **主流程**：6 段，约 800 字、3 分钟。依次是怎么赢、看身份、组队和投票、出任务、湖中仙女、刺杀和结束。每段末尾有 2 个「桌上常见疑问」，点一下直接问规则助手。
+- **注意事项**：17 条易错点，每条都写好了答案，依据本站常见问题和规则书，默认收起。
+- **术语**：讲稿里带下划线的词点开，能看到图、在哪儿看到、什么意思，以及「问规则助手」按钮。页面底部有图标速查。
+- **图片来源**：
+  - 配件（任务版图、队长标记、队伍标记、投票标记、任务牌、计分标记、回合标记、否决标记、忠臣和爪牙的身份牌）截自官方规则书扫描件，页脚署名并链接原文。
+  - 规则书里没有特殊身份和湖中仙女的图，这几张用的是本站「我的身份」里的原创插画，页脚已注明。
+- **数据位置**：都在 `public/teach.js` 开头（TERMS、PARTS、NOTES、GROUPS）。图片在 `public/img/teach/`。
+
 ### 新手教程、常见问题、规则助手
 
 - **新手教程**：9 节图文讲解。
@@ -139,6 +151,7 @@ node tests/test_review.mjs http://localhost:8861/ ./shots            # 评价卡
 node tests/test_chat.mjs   http://localhost:8861/ ./shots            # 规则助手：备用模型切换、定时检查、不带房间信息
 node tests/test_chat.mjs   http://localhost:8861/ ./shots --mock-web # 联网查找（同上的 wrangler dev 参数；和上一条隔 1 分钟跑，避开每分钟 8 问的限流）
 node tests/test_nav.mjs    http://localhost:8861/ ./shots            # 左上角返回按钮：全部游戏 / 首页 / 返回
+node tests/test_teach.mjs  http://localhost:8861/ ./shots            # 讲规则页（/api/chat 用 page.route 模拟，也可以对线上跑）
 node tests/test_chat.mjs   https://你的域名/ ./shots --live           # 线上实问
 ```
 

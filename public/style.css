@@ -544,3 +544,57 @@ em.g,.g{color:var(--good)}em.e,.e{color:var(--evil)}
 .csrc a{display:block;color:var(--navy);text-decoration:none;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .csrc i{margin-left:6px;font-style:normal;color:var(--ink2);opacity:.7}
 .cwait{display:block;margin-bottom:4px;font:500 12.5px var(--sans);color:var(--ink2)}
+
+/* teach page (teach.html, ported from Pittsburgh): a script to read aloud, terms that open a note, one-tap questions */
+.teach .tlead{margin:14px 2px 8px;font:500 14px/1.7 var(--sans);color:var(--ink2)}
+.teach .tlead b{color:var(--navy);text-decoration:underline dotted;text-underline-offset:3px}
+.tnav{position:sticky;top:0;z-index:5;display:flex;gap:6px;overflow-x:auto;margin:0 -12px;padding:8px 12px;background:rgba(236,231,218,.94);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);scrollbar-width:none}
+.tnav::-webkit-scrollbar{display:none}
+.tnav a{flex:none;display:inline-flex;align-items:center;gap:5px;padding:5px 11px;border-radius:14px;border:1px solid rgba(28,45,88,.35);background:rgba(28,45,88,.06);color:var(--navy);font:600 13px var(--sans);text-decoration:none}
+.tnav a i{font:600 12px var(--num);font-style:normal;color:var(--brass)}
+.tpart{margin-top:12px;padding:2px 14px 14px;scroll-margin-top:52px}
+.tpart h2.h{margin:12px 0 6px}
+.tpart h2.h i{font:600 16px var(--num);font-style:normal;color:var(--brass);margin-right:8px}
+.tline{margin-top:9px;font:500 17px/1.85 var(--sans);color:var(--ink)}
+.tline b{color:var(--red)}
+.term{display:inline;padding:0 2px;margin:0 1px;border:0;background:none;font:inherit;color:var(--navy);font-weight:700;text-decoration:underline dotted 1.5px;text-underline-offset:4px;cursor:pointer;-webkit-tap-highlight-color:rgba(28,45,88,.15)}
+.ico{display:inline-block;object-fit:contain;border-radius:3px}
+.term .ico,.tlab .ico{height:1.35em;width:auto;max-width:2.8em;vertical-align:-.3em;margin-right:3px}
+.tasks{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px;padding-top:10px;border-top:1px dashed rgba(76,82,102,.3)}
+.tasks em{width:100%;font:600 12px var(--sans);font-style:normal;color:var(--ink2)}
+.tq{display:inline-flex;align-items:center;gap:6px;min-height:34px;padding:5px 12px;border-radius:17px;border:1px solid rgba(142,31,42,.35);background:#fffdf6;color:var(--red);font:700 13.5px/1.4 var(--sans);text-align:left;cursor:pointer}
+.tq>span{color:var(--ink);font-weight:500}
+.tnote{margin-top:4px;font:500 13.5px/1.6 var(--sans);color:var(--ink2)}
+.tgo{display:flex;align-items:center;justify-content:center;margin-top:16px;text-decoration:none}
+.tgrid{margin-top:10px;padding:10px 12px 12px}
+.tgrid h3{font:900 14px var(--serif);letter-spacing:1px;color:var(--ink2)}
+.tgrid>div{display:grid;grid-template-columns:repeat(auto-fill,minmax(74px,1fr));gap:6px;margin-top:8px}
+.tic{display:flex;flex-direction:column;align-items:center;gap:4px;padding:8px 2px 7px;border:1px solid rgba(76,82,102,.2);border-radius:8px;background:#fffdf6;font:500 12px/1.3 var(--sans);color:var(--ink);cursor:pointer}
+.tic .ico{height:46px;width:auto;max-width:70px}
+.tsheet{position:fixed;inset:0;z-index:60}
+.tsheet.hidden{display:none}
+.tsbg{position:absolute;inset:0;background:rgba(10,14,28,.5)}
+.tsbox{position:absolute;left:0;right:0;bottom:0;max-width:520px;margin:0 auto;padding:16px 16px calc(env(safe-area-inset-bottom) + 16px);border-radius:14px 14px 0 0;background:var(--parch);border-top:3px solid var(--brass);box-shadow:0 -8px 24px rgba(0,0,0,.25);animation:tsup .2s ease-out}
+@keyframes tsup{from{transform:translateY(30px);opacity:0}}
+.tshd{display:flex;align-items:center;gap:12px}
+.tshd b{flex:1;font:900 20px var(--serif);letter-spacing:2px;color:var(--ink)}
+.ico.big{height:76px;width:auto;max-width:130px;flex:none}
+.tsx{width:36px;height:36px;border:0;border-radius:50%;background:rgba(76,82,102,.12);font-size:20px;color:var(--ink2);cursor:pointer}
+.tsbox p{margin-top:10px;font:500 15px/1.7 var(--sans);color:var(--ink)}
+.tsbox p em{display:block;font:600 12px var(--sans);font-style:normal;color:var(--red);letter-spacing:1px}
+.tnotes{display:flex;flex-direction:column;gap:6px;margin-top:10px}
+.tni{border:1px solid rgba(76,82,102,.25);border-radius:8px;background:#fffdf6}
+.tni summary{display:flex;align-items:center;gap:8px;min-height:44px;padding:8px 12px;font:700 15px/1.45 var(--sans);color:var(--ink);cursor:pointer;list-style:none}
+.tni summary::-webkit-details-marker{display:none}
+.tni summary::after{content:"＋";margin-left:auto;font-weight:500;color:var(--red)}
+.tni[open] summary::after{content:"－"}
+.tni summary i{flex:none;display:grid;place-items:center;width:22px;height:22px;border-radius:50%;background:var(--navy2);color:#fff;font:600 12px var(--num);font-style:normal}
+.tni p{margin:0 12px;padding-top:2px;font:500 15.5px/1.8 var(--sans);color:var(--ink)}
+.tni .tq{margin:8px 12px 12px;font-size:12.5px;min-height:30px}
+.teach footer a{color:var(--navy2)}
+/* landing: entry to the teach page */
+.teachgo{display:flex;align-items:center;gap:12px;margin-top:10px;padding:12px 14px;text-decoration:none;color:var(--ink);border-color:rgba(184,149,63,.7);background:linear-gradient(180deg,#fffaf0,#f1e8d2)}
+.teachgo .tg-i{flex:none;display:grid;place-items:center;width:42px;height:42px;border-radius:50%;background:var(--navy);color:var(--brass2);font:900 19px var(--serif);box-shadow:inset 0 0 0 2px var(--brass)}
+.teachgo b{display:block;font:900 16px var(--serif);letter-spacing:1px;color:var(--navy)}
+.teachgo span{flex:1;font:500 12.5px/1.5 var(--sans);color:var(--ink2)}
+.teachgo i{font:600 22px var(--sans);font-style:normal;color:var(--navy)}
